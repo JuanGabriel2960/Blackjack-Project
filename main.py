@@ -34,16 +34,14 @@ class pack:
 
 Chip = Money()
 
-print("$1 min - $2,500 max / To keep playing at the table")
+print("$1 min - $5,000 max / To keep playing at the table")
 
-while(Chip.money > 0 and Chip.money < 3000 ):
+while(Chip.money > 0 and Chip.money < 5000 ):
 	#Build the "hand" object of the "pack" class.
 	h = pack()
 
 	print("------------------------------------------------------------------------------------------------------------------")
-	print(" ")
-	print("Croupier cards")
-	print(" ")
+	print("\nCroupier cards\n")
 
 	#Build the first player and proceed to deliver 2 cards.
 	CR = CPU()
@@ -65,9 +63,7 @@ while(Chip.money > 0 and Chip.money < 3000 ):
 
 	print("Remaining money: $",Chip.money - Bet)
 
-	print(" ")
-	print("Player cards")
-	print(" ")
+	print("\nPlayer cards\n")
 
 	#Build the first player and proceed to deliver 2 cards.
 	p = player()
@@ -82,8 +78,7 @@ while(Chip.money > 0 and Chip.money < 3000 ):
 		
 		while (True):
 			try:
-				print(" ")
-				print("What would you like to do?")
+				print("\nWhat would you like to do?")
 				print("1-Request a card")
 				print("2-Stand")
 				Answer = int(input())
@@ -93,27 +88,41 @@ while(Chip.money > 0 and Chip.money < 3000 ):
 				break
 			except:
 				print("Error!")
+		#If the answer is 1, another card is given to the player.
 		if(Answer == 1):
 			h.give_one_card(p)
 			p.show_find()
+		#If the answer is 2, the player stands and the remaining cards are given to the Croupier.
 		if(Answer == 2):
 			h.give_one_card(CR)
 			CR.show_find()
+			#As long as the dealer's cards total less than 16, he must ask for another.
 			while (CR.count_find()<=16):
 				h.give_one_card(CR)
 				CR.show_find()
+			#If the dealer's cards are greater than the player's, but at the same time less than or equal to 21, he wins.
 			if CR.count_find() > p.count_find() and CR.count_find() <= 21:
 				print("Dealer wins")
+			#The "Bet_Money" function is called with the Boolean parameter 0 to indicate that the player lost.
 				Chip.Bet_Money(Bet,0)
 				break
 			else:
+			#The "Bet_Money" function is called with the Boolean parameter 1 to indicate that the player won,
 				print("Player wins")
 				Chip.Bet_Money(Bet,1)
 				break
-
+	#If the player does not get to stand at any time and automatically goes over 21, the dealer wins.
 	if (p.count_find() > 21):
 		print("Dealer wins")
 		Chip.Bet_Money(Bet,0)
+	#If the player does not get to stand at any time, but adds 21 he has blackjack and automatically wins.
 	elif (p.count_find() == 21):
 		print("Blackjack! The player wins")
 		Chip.Bet_Money(Bet,1)
+		
+#If the player's chips run out, he must leave the table and end the game.
+if (Chip.money < 1):
+	print("\nInsufficient chip, must leave the table")
+else:
+#If the player's coins exceed the maximum allowed, he must leave the table and end the game.
+	print("\nMaximum chip for this table")
