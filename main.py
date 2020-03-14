@@ -34,7 +34,9 @@ class pack:
 
 Chip = Money()
 
-while(True):
+print("$1 min - $2,500 max / To keep playing at the table")
+
+while(Chip.money > 0 and Chip.money < 3000 ):
 	#Build the "hand" object of the "pack" class.
 	h = pack()
 
@@ -51,8 +53,16 @@ while(True):
 	CR.show_find()
 
 	#The user is asked how much they want to bet.
-	print(" ")
-	Bet=int(input("How much do you want to bet?: "))
+	while(True):
+		try:
+			print(" ")
+			Bet=int(input("How much do you want to bet?: "))
+			if Bet < 1 or Bet > Chip.money:
+				raise ValueError 
+			break
+		except:
+			print("Error!")
+
 	print("Remaining money: $",Chip.money - Bet)
 
 	print(" ")
@@ -69,12 +79,20 @@ while(True):
 
 	#The player is asked to ask for request a card or stand.
 	while(p.count_find() < 21):
-		print(" ")
-		print("What would you like to do?")
-		print("1-Request a card")
-		print("2-Stand")
-		Answer = int(input())
-		print(" ")
+		
+		while (True):
+			try:
+				print(" ")
+				print("What would you like to do?")
+				print("1-Request a card")
+				print("2-Stand")
+				Answer = int(input())
+				print(" ")
+				if Answer < 1 or Answer > 2:
+					raise ValueError
+				break
+			except:
+				print("Error!")
 		if(Answer == 1):
 			h.give_one_card(p)
 			p.show_find()
@@ -84,7 +102,7 @@ while(True):
 			while (CR.count_find()<=16):
 				h.give_one_card(CR)
 				CR.show_find()
-			if CR.count_find() > p.count_find() and CR.count_find() < 21:
+			if CR.count_find() > p.count_find() and CR.count_find() <= 21:
 				print("Dealer wins")
 				Chip.Bet_Money(Bet,0)
 				break
