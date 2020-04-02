@@ -116,22 +116,22 @@ while(Chip.money > 0 and Chip.money < 5000 ):
 				Croupier.show_find()
 			#If the dealer's cards are greater than the player's, but at the same time less than or equal to 21, he wins.
 			if Croupier.count_find() > player_1.count_find() and Croupier.count_find() <= 21:
-				print("Dealer wins")
+				print("\nDealer wins")
 			#The "Bet_Money" function is called with the Boolean parameter 0 to indicate that the player lost.
 				Chip.Bet_Money(Bet,0)
 				break
 			else:
 			#The "Bet_Money" function is called with the Boolean parameter 1 to indicate that the player won,
-				print("Player wins")
+				print("\nPlayer wins")
 				Chip.Bet_Money(Bet,1)
 				break
 	#If the player does not get to stand at any time and automatically goes over 21, the dealer wins.
 	if (player_1.count_find() > 21):
-		print("Dealer wins")
+		print("\nDealer wins")
 		Chip.Bet_Money(Bet,0)
 	#If the player does not get to stand at any time, but adds 21 he has blackjack and automatically wins.
 	elif (player_1.count_find() == 21):
-		print("Blackjack! The player wins")
+		print("\nBlackjack! The player wins")
 		Chip.Bet_Money(Bet,1)
 
 	Next=(input("\nPress enter to continue: "))
