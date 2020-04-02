@@ -1,4 +1,5 @@
 from Controller import *
+os.system("cls")
 
 #The "card" class receives the form (S) and the value (V) of the cards as parameters.
 class card:
