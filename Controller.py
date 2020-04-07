@@ -13,7 +13,7 @@ class player:
 		for accountant in self.find:
 			print(str(accountant.values) + accountant.shapes, end = " ")
 		print("-> " + str(self.count_find()))
-#The count_find method finding aces account to assign if the value will be 1 or 11.
+#The count_find add the numerical value of the cards and thus be able to compare it.
 	def count_find(self):
 		counter = 0
 
