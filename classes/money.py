@@ -3,9 +3,9 @@ class Money:
 	money = 1000
 		
 	def Bet_Money(self,bet,win):
-		if (win == 0):
-			self.money-=bet
-			print("Remaining money: $",self.money)
-		if (win == 1):
+		if win:
 			self.money = self.money + bet
 			print("Current money: $",self.money)
+		else:
+			self.money-=bet
+			print("Remaining money: $",self.money)
