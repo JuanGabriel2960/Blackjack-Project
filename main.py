@@ -1,18 +1,15 @@
-from Controller import *
-os.system("cls")
+#Import the classes stored in the different modules of the main package.
+from classes.player import *
+from classes.money import *
+from classes.cpu import *
+from classes.card import *
 
-#The "card" class receives the form (S) and the value (V) of the cards as parameters.
-class card:
-	def __init__(self,shape,value):
-		self.shapes = shape
-		self.values = value
-#The "get_value" method assigns the numerical value to letters with letters and returns the value of the numerical letters.
-	def get_value(self):
-		if(self.values in ["J","Q","K"]):
-			return 10
-		if(self.values in ["A"]):
-			return 11
-		return self.values
+#Import python's own modules to generate randomness and clean screen.
+import random
+import time
+import os
+
+os.system("cls")
 
 #The "pack" class combines the value of the cards and their form and groups them in the "pack" arrangement.
 class pack:
@@ -104,14 +101,17 @@ while(Chip.money > 0 and Chip.money < 5000 ):
 
 		#If the answer is 1, another card is given to the player.
 		if(Answer == 1):
+			time.sleep(1)
 			hand.give_one_card(player_1)
 			player_1.show_find()
 		#If the answer is 2, the player stands and the remaining cards are given to the Croupier.
 		if(Answer == 2):
+			time.sleep(2)
 			hand.give_one_card(Croupier)
 			Croupier.show_find()
 			#As long as the dealer's cards total less than 16, he must ask for another.
 			while (Croupier.count_find()<=16):
+				time.sleep(2)
 				hand.give_one_card(Croupier)
 				Croupier.show_find()
 			#If the dealer's cards are greater than the player's, but at the same time less than or equal to 21, he wins.
