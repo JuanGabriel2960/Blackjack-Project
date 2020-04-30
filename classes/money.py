@@ -2,9 +2,9 @@
 class Money:
 	money = 1000
 		
-	def Bet_Money(self,bet,win):
+	def bet_money(self,bet,win):
 		if win:
-			self.money = self.money + bet
+			self.money+=bet
 			print("Current money: $",self.money)
 		else:
 			self.money-=bet
