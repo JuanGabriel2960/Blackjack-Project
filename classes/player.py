@@ -1,4 +1,3 @@
-#The "player" class receives the name of the players.
 class player:
 	def __init__(self):
 		self.find = []
@@ -8,7 +7,7 @@ class player:
 #The "show_find" method traces the arrangement of the cards found, shows them and adds their value.
 	def show_find(self):
 		for accountant in self.find:
-			print(str(accountant.values) + accountant.shapes, end = " ")
+			print(str(accountant.values_of_the_cards) + accountant.shapes_of_the_cards, end = " ")
 		print("-> " + str(self.count_find()))
 #The count_find add the numerical value of the cards and thus be able to compare it.
 	def count_find(self):
